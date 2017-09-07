@@ -1,0 +1,100 @@
+<html>
+	<body>
+	<style>
+.screen {
+	width: 220px;
+	height: 220px;
+	background-color: green;
+}
+
+.template {
+	display: none;
+}
+.cell.live {
+	background-color: pink;
+}
+
+
+.cell {
+display:inline-block;
+border: black 1px solid;
+margin: 0 20px;
+}
+</style>
+	<div class="content">
+	</div>
+	<script>
+	
+	var animals = [{name:'kiska', desc: 'KOSHKA', type:'cat'},
+				   {name:'Murka', desc: 'KOSHKA', type:'cat'}, 
+				   {name:'Sharik', desc: 'SOBAKA', type: 'dog'	}];
+	var cont_block = document.querySelector('.content');
+
+
+	var Cat = function(name, desc) 
+	{	 
+		this.name = name;
+		this.desc = desc; 
+		this.pic = name+'.jpg';
+		this.draw = function(){
+		
+		var section = document.createElement('div');
+		section.setAttribute('class', 'cell');
+		 
+		var _name = document.createElement('p');
+		_name.innerHTML = this.name;
+		var _desc = document.createElement('p');
+		_desc.innerHTML = this.desc;
+		var _img = document.createElement('img');
+		_img.setAttribute('src', this.pic);
+		var img_cont = document.createElement('div');
+		img_cont.appendChild(_img);
+		section.appendChild(img_cont);
+		section.appendChild(_name);
+		section.appendChild(_desc);
+		cont_block.appendChild(section);
+		}; 
+	};
+	
+	 var Dog = function(name, desc) 
+	{	 
+		this.name = name;
+		this.desc = desc;
+		this.pic = name+'.jpg';
+		
+		this.draw = function(){
+		
+		var section = document.createElement('div');
+		section.setAttribute('class', 'cell');
+		
+		var _name = document.createElement('p');
+		_name.innerHTML = this.name;
+		var _desc = document.createElement('p');
+		_desc.innerHTML = this.desc;
+		var _img = document.createElement('img');
+		_img.setAttribute('src', this.pic);
+		var img_cont = document.createElement('div');
+		img_cont.appendChild(_img);
+		
+		section.appendChild(_name);
+		section.appendChild(_desc);
+		section.appendChild(img_cont);
+		cont_block.appendChild(section);
+		}; 
+	};
+	
+		animals.forEach(function(val,animals){
+		if(val.type == 'cat')
+		{
+		var animal = new Cat(val.name,val.desc);
+		}
+		else if(val.type == 'dog')
+		{
+		var animal = new Dog(val.name,val.desc);
+		}
+		animal.draw();
+	});
+
+	</script>
+	</body>
+</html>
